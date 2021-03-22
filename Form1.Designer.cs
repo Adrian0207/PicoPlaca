@@ -38,6 +38,7 @@ namespace PicoPlaca
             this.btnPredicion = new System.Windows.Forms.Button();
             this.errorIcon = new System.Windows.Forms.ErrorProvider(this.components);
             this.dtpHora = new System.Windows.Forms.DateTimePicker();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorIcon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,12 +79,14 @@ namespace PicoPlaca
             this.txtPlaca.Location = new System.Drawing.Point(140, 39);
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(157, 30);
-            this.txtPlaca.TabIndex = 4;
+            this.txtPlaca.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.txtPlaca, "Ingrese el número de placa sin guión. \r\nEjemplo: \r\nAAA001\r\nAAAA001");
             this.txtPlaca.Leave += new System.EventHandler(this.txtPlaca_Leave);
             // 
             // cbxDia
             // 
             this.cbxDia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxDia.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbxDia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxDia.FormattingEnabled = true;
             this.cbxDia.Items.AddRange(new object[] {
@@ -97,14 +100,15 @@ namespace PicoPlaca
             this.cbxDia.Location = new System.Drawing.Point(140, 100);
             this.cbxDia.Name = "cbxDia";
             this.cbxDia.Size = new System.Drawing.Size(157, 33);
-            this.cbxDia.TabIndex = 5;
+            this.cbxDia.TabIndex = 2;
             // 
             // btnPredicion
             // 
             this.btnPredicion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPredicion.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnPredicion.Location = new System.Drawing.Point(125, 238);
             this.btnPredicion.Name = "btnPredicion";
-            this.btnPredicion.Size = new System.Drawing.Size(113, 36);
+            this.btnPredicion.Size = new System.Drawing.Size(133, 36);
             this.btnPredicion.TabIndex = 7;
             this.btnPredicion.Text = "Pronóstico";
             this.btnPredicion.UseVisualStyleBackColor = true;
@@ -118,18 +122,22 @@ namespace PicoPlaca
             // 
             this.dtpHora.CustomFormat = "HH:mm";
             this.dtpHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpHora.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpHora.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpHora.Location = new System.Drawing.Point(140, 170);
             this.dtpHora.Name = "dtpHora";
             this.dtpHora.ShowUpDown = true;
             this.dtpHora.Size = new System.Drawing.Size(157, 30);
-            this.dtpHora.TabIndex = 8;
+            this.dtpHora.TabIndex = 3;
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.AutomaticDelay = 200;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(352, 293);
+            this.ClientSize = new System.Drawing.Size(370, 293);
             this.Controls.Add(this.dtpHora);
             this.Controls.Add(this.btnPredicion);
             this.Controls.Add(this.cbxDia);
@@ -155,6 +163,7 @@ namespace PicoPlaca
         private System.Windows.Forms.Button btnPredicion;
         private System.Windows.Forms.ErrorProvider errorIcon;
         private System.Windows.Forms.DateTimePicker dtpHora;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 
