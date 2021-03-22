@@ -33,9 +33,9 @@ namespace PicoPlaca
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.txtPlaca = new System.Windows.Forms.TextBox();
+            this.cbxDia = new System.Windows.Forms.ComboBox();
+            this.cbxHora = new System.Windows.Forms.ComboBox();
             this.btnPredicion = new System.Windows.Forms.Button();
             this.errorIcon = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorIcon)).BeginInit();
@@ -71,19 +71,21 @@ namespace PicoPlaca
             this.label3.TabIndex = 2;
             this.label3.Text = "Hora";
             // 
-            // textBox1
+            // txtPlaca
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(140, 39);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(157, 30);
-            this.textBox1.TabIndex = 4;
+            this.txtPlaca.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtPlaca.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPlaca.Location = new System.Drawing.Point(140, 39);
+            this.txtPlaca.Name = "txtPlaca";
+            this.txtPlaca.Size = new System.Drawing.Size(157, 30);
+            this.txtPlaca.TabIndex = 4;
+            this.txtPlaca.Leave += new System.EventHandler(this.txtPlaca_Leave);
             // 
-            // comboBox1
+            // cbxDia
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbxDia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxDia.FormattingEnabled = true;
+            this.cbxDia.Items.AddRange(new object[] {
             "Lunes",
             "Martes",
             "Miércoles",
@@ -91,16 +93,16 @@ namespace PicoPlaca
             "Viernes",
             "Sábado",
             "Domingo"});
-            this.comboBox1.Location = new System.Drawing.Point(140, 100);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(157, 33);
-            this.comboBox1.TabIndex = 5;
+            this.cbxDia.Location = new System.Drawing.Point(140, 100);
+            this.cbxDia.Name = "cbxDia";
+            this.cbxDia.Size = new System.Drawing.Size(157, 33);
+            this.cbxDia.TabIndex = 5;
             // 
-            // comboBox2
+            // cbxHora
             // 
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.cbxHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxHora.FormattingEnabled = true;
+            this.cbxHora.Items.AddRange(new object[] {
             "00:00",
             "01:00",
             "02:00",
@@ -125,10 +127,10 @@ namespace PicoPlaca
             "21:00",
             "22:00",
             "23:00"});
-            this.comboBox2.Location = new System.Drawing.Point(140, 167);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(157, 33);
-            this.comboBox2.TabIndex = 6;
+            this.cbxHora.Location = new System.Drawing.Point(140, 167);
+            this.cbxHora.Name = "cbxHora";
+            this.cbxHora.Size = new System.Drawing.Size(157, 33);
+            this.cbxHora.TabIndex = 6;
             // 
             // btnPredicion
             // 
@@ -139,6 +141,7 @@ namespace PicoPlaca
             this.btnPredicion.TabIndex = 7;
             this.btnPredicion.Text = "Pronóstico";
             this.btnPredicion.UseVisualStyleBackColor = true;
+            this.btnPredicion.Click += new System.EventHandler(this.btnPredicion_Click);
             // 
             // errorIcon
             // 
@@ -148,11 +151,11 @@ namespace PicoPlaca
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(343, 293);
+            this.ClientSize = new System.Drawing.Size(352, 293);
             this.Controls.Add(this.btnPredicion);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.cbxHora);
+            this.Controls.Add(this.cbxDia);
+            this.Controls.Add(this.txtPlaca);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -169,9 +172,9 @@ namespace PicoPlaca
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.TextBox txtPlaca;
+        private System.Windows.Forms.ComboBox cbxDia;
+        private System.Windows.Forms.ComboBox cbxHora;
         private System.Windows.Forms.Button btnPredicion;
         private System.Windows.Forms.ErrorProvider errorIcon;
     }
