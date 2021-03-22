@@ -35,9 +35,9 @@ namespace PicoPlaca
             this.label3 = new System.Windows.Forms.Label();
             this.txtPlaca = new System.Windows.Forms.TextBox();
             this.cbxDia = new System.Windows.Forms.ComboBox();
-            this.cbxHora = new System.Windows.Forms.ComboBox();
             this.btnPredicion = new System.Windows.Forms.Button();
             this.errorIcon = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dtpHora = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.errorIcon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,40 +98,6 @@ namespace PicoPlaca
             this.cbxDia.Size = new System.Drawing.Size(157, 33);
             this.cbxDia.TabIndex = 5;
             // 
-            // cbxHora
-            // 
-            this.cbxHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxHora.FormattingEnabled = true;
-            this.cbxHora.Items.AddRange(new object[] {
-            "00:00",
-            "01:00",
-            "02:00",
-            "03:00",
-            "04:00",
-            "05:00",
-            "06:00",
-            "07:00",
-            "08:00",
-            "09:00",
-            "10:00",
-            "11:00",
-            "12:00",
-            "13:00",
-            "14:00",
-            "15:00",
-            "16:00",
-            "17:00",
-            "18:00",
-            "19:00",
-            "20:00",
-            "21:00",
-            "22:00",
-            "23:00"});
-            this.cbxHora.Location = new System.Drawing.Point(140, 167);
-            this.cbxHora.Name = "cbxHora";
-            this.cbxHora.Size = new System.Drawing.Size(157, 33);
-            this.cbxHora.TabIndex = 6;
-            // 
             // btnPredicion
             // 
             this.btnPredicion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -147,13 +113,22 @@ namespace PicoPlaca
             // 
             this.errorIcon.ContainerControl = this;
             // 
+            // dtpHora
+            // 
+            this.dtpHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpHora.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpHora.Location = new System.Drawing.Point(140, 170);
+            this.dtpHora.Name = "dtpHora";
+            this.dtpHora.Size = new System.Drawing.Size(157, 30);
+            this.dtpHora.TabIndex = 8;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(352, 293);
+            this.Controls.Add(this.dtpHora);
             this.Controls.Add(this.btnPredicion);
-            this.Controls.Add(this.cbxHora);
             this.Controls.Add(this.cbxDia);
             this.Controls.Add(this.txtPlaca);
             this.Controls.Add(this.label3);
@@ -174,9 +149,9 @@ namespace PicoPlaca
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtPlaca;
         private System.Windows.Forms.ComboBox cbxDia;
-        private System.Windows.Forms.ComboBox cbxHora;
         private System.Windows.Forms.Button btnPredicion;
         private System.Windows.Forms.ErrorProvider errorIcon;
+        private System.Windows.Forms.DateTimePicker dtpHora;
     }
 }
 
