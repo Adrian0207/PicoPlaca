@@ -19,24 +19,42 @@ namespace PicoPlaca
         }
 
         /// <summary>
+        /// Determine wheter the rush hour applied
+        /// </summary>
+        /// <returns></returns>
+        private bool AplicaHora()
+        {
+            byte minManana = 7, minTarde = 16, maxManana = 9, maxTarde = 19, minutos = 30;
+            if (
+                dtpHora.Value.Hour >= minManana &&
+                (dtpHora.Value.Hour <= maxManana && dtpHora.Value.Minute <= minutos) ||
+                dtpHora.Value.Hour >= minTarde &&
+                (dtpHora.Value.Hour <= maxTarde && dtpHora.Value.Minute <= minutos)
+                )
+            {
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
         /// Display a message in a dialog window depending on the bool parameter
         /// </summary>
         /// <param name="aplicaPico"></param>
-        private void Mensaje(bool aplicaPico)
+        /// <param name="mensaje"></param>
+        private void Mensaje(bool aplicaPico, string mensaje)
         {
             if(aplicaPico)
-                MessageBox.Show("Puede circular", "Pico y Placa", MessageBoxButtons.OK, 
+                MessageBox.Show(mensaje, "Pico&Placa", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             else
-                MessageBox.Show("NO Puede circular", "Pico y Placa", MessageBoxButtons.OK, 
-                    MessageBoxIcon.Error);
+                MessageBox.Show(mensaje, "Pico&Placa", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void btnPredicion_Click(object sender, EventArgs e)
         {
             string ultimoDigito = txtPlaca.Text.Substring(txtPlaca.Text.Length - 1);
-            int hora = Convert.ToInt32(
-                dtpHora.Value.Hour.ToString() + dtpHora.Value.Minute.ToString());
+            string mensaje = "Puede circular hoy todo el día";
             bool aplicaPico = true;
 
             #region Prediction
@@ -45,59 +63,78 @@ namespace PicoPlaca
                 case "1":
                 case "2":
                     if (cbxDia.SelectedItem.ToString().Equals("Lunes"))
-                        if (dtpHora.Value.Hour >= 7 &&
-                            (dtpHora.Value.Hour <= 9 && dtpHora.Value.Minute <= 30) ||
-                            dtpHora.Value.Hour >= 16 &&
-                            (dtpHora.Value.Hour <= 19 && dtpHora.Value.Minute <= 30))
-                                aplicaPico = false;
+                        if (AplicaHora())
+                        {
+                            mensaje = "No puede circular a esta hora";
+                            aplicaPico = false;
+                        }
+                        else
+                        {
+                            mensaje = "Puede circular a esta hora";
+                        } 
                     break;
 
                 case "3":
                 case "4":
                     if (cbxDia.SelectedItem.ToString().Equals("Martes"))
-                        if (dtpHora.Value.Hour >= 7 &&
-                            (dtpHora.Value.Hour <= 9 && dtpHora.Value.Minute <= 30) ||
-                            dtpHora.Value.Hour >= 16 &&
-                            (dtpHora.Value.Hour <= 19 && dtpHora.Value.Minute <= 30))
+                        if (AplicaHora())
+                        {
+                            mensaje = "No puede circular a esta hora";
                             aplicaPico = false;
+                        }
+                        else
+                        {
+                            mensaje = "Puede circular a esta hora";
+                        }
                     break;
 
                 case "5":
                 case "6":
                     if (cbxDia.SelectedItem.ToString().Equals("Miércoles"))
-                        if (dtpHora.Value.Hour >= 7 &&
-                            (dtpHora.Value.Hour <= 9 && dtpHora.Value.Minute <= 30) ||
-                            dtpHora.Value.Hour >= 16 &&
-                            (dtpHora.Value.Hour <= 19 && dtpHora.Value.Minute <= 30))
+                        if (AplicaHora())
+                        {
+                            mensaje = "No puede circular a esta hora";
                             aplicaPico = false;
+                        }
+                        else
+                        {
+                            mensaje = "Puede circular a esta hora";
+                        }
                     break;
 
                 case "7":
                 case "8":
                     if (cbxDia.SelectedItem.ToString().Equals("Jueves"))
-                        if (dtpHora.Value.Hour >= 7 &&
-                            (dtpHora.Value.Hour <= 9 && dtpHora.Value.Minute <= 30) ||
-                            dtpHora.Value.Hour >= 16 &&
-                            (dtpHora.Value.Hour <= 19 && dtpHora.Value.Minute <= 30))
+                        if (AplicaHora())
+                        {
+                            mensaje = "No puede circular a esta hora";
                             aplicaPico = false;
+                        }
+                        else
+                        {
+                            mensaje = "Puede circular a esta hora";
+                        }
                     break;
 
                 case "9":
                 case "0":
                     if (cbxDia.SelectedItem.ToString().Equals("Viernes"))
-                        if (dtpHora.Value.Hour >= 7 &&
-                            (dtpHora.Value.Hour <= 9 && dtpHora.Value.Minute <= 30) ||
-                            dtpHora.Value.Hour >= 16 &&
-                            (dtpHora.Value.Hour <= 19 && dtpHora.Value.Minute <= 30))
+                        if (AplicaHora())
+                        {
+                            mensaje = "No puede circular a esta hora";
                             aplicaPico = false;
+                        }
+                        else
+                        {
+                            mensaje = "Puede circular a esta hora";
+                        }
                     break;
-
                 default:
                     break;
             }
             #endregion
 
-            Mensaje(aplicaPico);
+            Mensaje(aplicaPico, mensaje);
 
         }
 
