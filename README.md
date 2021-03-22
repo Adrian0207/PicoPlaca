@@ -19,4 +19,7 @@
 ### User Interface
 - A textbox to write the license plate
 - A dropdown with the days of the week
-- A dropdown with the time in hours
+- A datepicker with the time in hours
+
+### Output
+- A message indicating if it applies the restriction or not
