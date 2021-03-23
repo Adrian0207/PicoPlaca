@@ -3,7 +3,7 @@
 ## "We’d like you to write a "Pico y Placa" predictor."
 
 ### Inputs
-- License plate number. (the full number ie: AAA-0001)
+- License plate number. (the full number ie: AAA0001, AAA001)
 - Date. (as a String)
 - A time.
 
