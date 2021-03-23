@@ -16,10 +16,11 @@ namespace PicoPlaca
         public Form1()
         {
             InitializeComponent();
+            cbxDia.SelectedIndex = 0;
         }
 
         /// <summary>
-        /// Determine wheter the rush hour applied
+        /// Determina si se aplica o no el pico y placa
         /// </summary>
         /// <returns></returns>
         private bool AplicaHora()
@@ -32,13 +33,23 @@ namespace PicoPlaca
                 (dtpHora.Value.Hour <= maxTarde && dtpHora.Value.Minute <= minutos)
                 )
             {
-                return false;
+                return true;
             }
-            return true;
+            return false;
         }
 
         /// <summary>
-        /// Display a message in a dialog window depending on the bool parameter
+        /// Limpia y reinicia todo los inputs
+        /// </summary>
+        private void Limpiar()
+        {
+            txtPlaca.Clear();
+            cbxDia.SelectedIndex = 0;
+
+        }
+
+        /// <summary>
+        /// Despliega un mensage en un cuadro de dialogo dependiendo del parametro booleano
         /// </summary>
         /// <param name="aplicaPico"></param>
         /// <param name="mensaje"></param>
@@ -53,99 +64,106 @@ namespace PicoPlaca
 
         private void btnPredicion_Click(object sender, EventArgs e)
         {
-            string ultimoDigito = txtPlaca.Text.Substring(txtPlaca.Text.Length - 1);
-            string mensaje = "Puede circular hoy todo el día";
-            bool aplicaPico = true;
-
-            #region Prediction
-            switch (ultimoDigito)
+            if(txtPlaca.Text == string.Empty && cbxDia.Text == string.Empty)
             {
-                case "1":
-                case "2":
-                    if (cbxDia.SelectedItem.ToString().Equals("Lunes"))
-                        if (AplicaHora())
-                        {
-                            mensaje = "No puede circular a esta hora";
-                            aplicaPico = false;
-                        }
-                        else
-                        {
-                            mensaje = "Puede circular a esta hora";
-                        } 
-                    break;
-
-                case "3":
-                case "4":
-                    if (cbxDia.SelectedItem.ToString().Equals("Martes"))
-                        if (AplicaHora())
-                        {
-                            mensaje = "No puede circular a esta hora";
-                            aplicaPico = false;
-                        }
-                        else
-                        {
-                            mensaje = "Puede circular a esta hora";
-                        }
-                    break;
-
-                case "5":
-                case "6":
-                    if (cbxDia.SelectedItem.ToString().Equals("Miércoles"))
-                        if (AplicaHora())
-                        {
-                            mensaje = "No puede circular a esta hora";
-                            aplicaPico = false;
-                        }
-                        else
-                        {
-                            mensaje = "Puede circular a esta hora";
-                        }
-                    break;
-
-                case "7":
-                case "8":
-                    if (cbxDia.SelectedItem.ToString().Equals("Jueves"))
-                        if (AplicaHora())
-                        {
-                            mensaje = "No puede circular a esta hora";
-                            aplicaPico = false;
-                        }
-                        else
-                        {
-                            mensaje = "Puede circular a esta hora";
-                        }
-                    break;
-
-                case "9":
-                case "0":
-                    if (cbxDia.SelectedItem.ToString().Equals("Viernes"))
-                        if (AplicaHora())
-                        {
-                            mensaje = "No puede circular a esta hora";
-                            aplicaPico = false;
-                        }
-                        else
-                        {
-                            mensaje = "Puede circular a esta hora";
-                        }
-                    break;
-                default:
-                    break;
+                errorIcon.SetError(txtPlaca, "Ingrese el número de placa");
+                errorIcon.SetError(cbxDia, "Seleccione un día");
             }
-            #endregion
+            else
+            {
+                string ultimoDigito = txtPlaca.Text.Substring(txtPlaca.Text.Length - 1);
+                string mensaje = "Puede circular hoy todo el día";
+                bool aplicaPico = true;
 
-            Mensaje(aplicaPico, mensaje);
+                #region Prediction
+                switch (ultimoDigito)
+                {
+                    case "1":
+                    case "2":
+                        if (cbxDia.SelectedItem.ToString().Equals("Lunes"))
+                            if (AplicaHora())
+                            {
+                                mensaje = "No puede circular a esta hora";
+                                aplicaPico = false;
+                            }
+                            else
+                            {
+                                mensaje = "Puede circular a esta hora";
+                            }
+                        break;
 
+                    case "3":
+                    case "4":
+                        if (cbxDia.SelectedItem.ToString().Equals("Martes"))
+                            if (AplicaHora())
+                            {
+                                mensaje = "No puede circular a esta hora";
+                                aplicaPico = false;
+                            }
+                            else
+                            {
+                                mensaje = "Puede circular a esta hora";
+                            }
+                        break;
+
+                    case "5":
+                    case "6":
+                        if (cbxDia.SelectedItem.ToString().Equals("Miércoles"))
+                            if (AplicaHora())
+                            {
+                                mensaje = "No puede circular a esta hora";
+                                aplicaPico = false;
+                            }
+                            else
+                            {
+                                mensaje = "Puede circular a esta hora";
+                            }
+                        break;
+
+                    case "7":
+                    case "8":
+                        if (cbxDia.SelectedItem.ToString().Equals("Jueves"))
+                            if (AplicaHora())
+                            {
+                                mensaje = "No puede circular a esta hora";
+                                aplicaPico = false;
+                            }
+                            else
+                            {
+                                mensaje = "Puede circular a esta hora";
+                            }
+                        break;
+
+                    case "9":
+                    case "0":
+                        if (cbxDia.SelectedItem.ToString().Equals("Viernes"))
+                            if (AplicaHora())
+                            {
+                                mensaje = "No puede circular a esta hora";
+                                aplicaPico = false;
+                            }
+                            else
+                            {
+                                mensaje = "Puede circular a esta hora";
+                            }
+                        break;
+                    default:
+                        break;
+                }
+                #endregion
+                Mensaje(aplicaPico, mensaje);
+                Limpiar();
+            }
         }
 
         private void txtPlaca_Leave(object sender, EventArgs e)
         {
-            string pattern = @"^([A-Z]){3,4}([0-9]){3}$";//Regular expressions for AAAA001, AAA001
+            string pattern = @"^([A-Z]){3}([0-9]){3,4}$";//Expresión regular para AAAA001, AAA001
 
             if (!Regex.IsMatch(txtPlaca.Text, pattern))
             {
                 errorIcon.SetError(txtPlaca, 
-                    "El ingreso de la placa es incorrecta, Formato AAAA001 o AAA001");
+                    "El ingreso de la placa es incorrecta, Formato AAA0001 o AAA001");
                 txtPlaca.Clear();
             }
             else
